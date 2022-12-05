@@ -6,11 +6,6 @@ function App() {
   return (
     <div className="App">
       <State />
-      <State />
-      <State />
-      <State />
-      <State />
-      <State />
     </div>
   );
 }
