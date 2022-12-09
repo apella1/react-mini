@@ -14,8 +14,8 @@ function NameList () {
 	return(
 		<div>
 			<ul>
-				{list.map(name => (
-					<li key={name}>{name}</li>
+				{list.map((name, id) => (
+					<li key={id}>{name}</li>
 				))}
 			</ul>
 			<input

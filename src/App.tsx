@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import { State } from './components';
+import { Reducer, State } from './components';
+import { Context } from './hooks';
 
 function App() {
   return (
     <div className="App">
+      <Context />
       <State />
+      <Reducer />
     </div>
   );
 }
