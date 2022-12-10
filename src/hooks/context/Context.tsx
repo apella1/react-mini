@@ -24,12 +24,18 @@ function usePokemonSource (): {pokemon: Pokemon[]} {
     return { pokemon }
   }
 
-const PokemonContext = createContext({
-  pokemon: [] as Pokemon[],
-});
+  // '!' makes the context mandatory
+
+function usePokemon() {
+  return useContext(PokemonContext)!
+}
+
+const PokemonContext = createContext<
+  ReturnType<typeof usePokemonSource> | undefined
+>(undefined);
   
 const PokemonList = () => {
-      const {pokemon} = useContext(PokemonContext);
+      const {pokemon} = usePokemon();
       return (
         <>
         <ul>
