@@ -30,10 +30,10 @@ function usePokemon() {
   return useContext(PokemonContext)!
 }
 
-const PokemonContext = createContext<
-  ReturnType<typeof usePokemonSource> | undefined
->(undefined);
-  
+const PokemonContext = createContext<ReturnType<typeof usePokemonSource>>(
+  {} as unknown as ReturnType <typeof usePokemonSource>
+);
+
 const PokemonList = () => {
       const {pokemon} = usePokemon();
       return (
@@ -59,5 +59,3 @@ const Context = () => {
 }
 
 export default Context;
-
-// ? why am i getting an empty array returned
