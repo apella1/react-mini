@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext, useContext} from 'react';
 
 interface Pokemon {
   id: number,
@@ -18,19 +18,25 @@ function usePokemon (): {pokemon: Pokemon[]} {
     useEffect(() => {
       fetch('../../data/pokemon.json')
         .then(res => res.json())
-        .then(data => setPokemon(data));
+        .then(data => setPokemon(data))
     }, [])
 
     return { pokemon }
   }
 
+const ThemeContext = createContext('light');
+  
 const PokemonList = ({pokemon}: {pokemon: Pokemon[]}) => {
+      const theme = useContext(ThemeContext);
       return (
+        <>
+        <p>Theme: {theme}</p>
         <ul>
           {pokemon.map(p => (
             <li key={p.id}>{p.name}</li>
           ))}
         </ul>
+        </>
       )
   }
   
@@ -39,10 +45,12 @@ const Context = () => {
   const { pokemon } = usePokemon();
  
   return (
-    <div>
-      <PokemonList pokemon={pokemon}/>
-    </div>
-  )
+    <ThemeContext.Provider value='dark'>
+      <div className = 'bg-lime-500'>
+        <PokemonList pokemon={pokemon}/>
+      </div>
+    </ThemeContext.Provider>
+     )
 }
 
 export default Context;
